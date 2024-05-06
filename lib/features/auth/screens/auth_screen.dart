@@ -1,8 +1,10 @@
 import 'package:amazon_clone/constants/height.dart';
-import 'package:amazon_clone/constants/images.dart';
-import 'package:amazon_clone/features/styles/text_style.dart';
+import 'package:amazon_clone/constants/texts.dart';
+import 'package:amazon_clone/reusables/elevated_button.dart';
+import 'package:amazon_clone/reusables/form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import '../../../reusables/form_header.dart';
 
 class AuthScreen extends StatefulWidget {
   static const String routeName = '/auth-screen';
@@ -13,7 +15,10 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-
+  final _signUpFormKey = GlobalKey<FormState>();
+  final TextEditingController _emailController= TextEditingController();
+  final TextEditingController _passwordController= TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,14 +28,21 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Container(
             padding: const EdgeInsets.all(8),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(AppImages.logo),
-                const SizedBox(
-                  height:AppHeight.sizedBoxHeight
-                ),
-                Text('Welcome to the Login Screen' , style: AppTextStyle.mainTitle,),
+                const AppFormHeader(text: AppText.loginMessage,),
+                Form(
+                  //Login Form
+                  key: _signUpFormKey,
+                  child: Column(
+                    children: [
+                      AppForm(controller: _emailController, hintText: 'Email',),
+                      const SizedBox(height: AppHeight.formheight,),
+                      AppForm(controller: _passwordController, hintText: 'Password',),
+                      const SizedBox(height: AppHeight.formheight,),
+                      AppElevatedButton(text: 'Login', onTap: (){})
+                    ],
+                  )
+                )
               ],
             ),
           ),
@@ -38,4 +50,11 @@ class _AuthScreenState extends State<AuthScreen> {
       )
     );
   }
+  @override
+  void dispose(){
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
 }
+
