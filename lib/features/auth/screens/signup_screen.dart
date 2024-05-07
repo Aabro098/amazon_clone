@@ -1,22 +1,21 @@
 import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/texts.dart';
-import 'package:amazon_clone/features/styles/text_style.dart';
 import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../reusables/form_header.dart';
 
-class AuthScreen extends StatefulWidget {
-  static const String routeName = '/auth-screen';
-  const AuthScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  static const String routeName = '/signup-screen';
+  const SignUpScreen({super.key});
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
-  final _signInFormKey = GlobalKey<FormState>();
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _signUpFormKey = GlobalKey<FormState>();
   final TextEditingController _emailController= TextEditingController();
   final TextEditingController _passwordController= TextEditingController();
   
@@ -30,21 +29,19 @@ class _AuthScreenState extends State<AuthScreen> {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                const AppFormHeader(text: AppText.loginMessage,),
+                const AppFormHeader(text: AppText.signUpMessage,),
                 Form(
                   //Login Form
-                  key: _signInFormKey,
+                  key: _signUpFormKey,
                   child: Column(
                     children: [
+                      AppForm(controller: _emailController, hintText: 'Username',),
+                      const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _emailController, hintText: 'Email',),
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _passwordController, hintText: 'Password',),
                       const SizedBox(height: AppHeight.formheight,),
-                      TextButton(onPressed: (){}, child: Text(
-                        'Forgot Password ?' , style: AppTextStyle.normalText ,
-                      )),
-                      const SizedBox(height: AppHeight.formheight,),
-                      AppElevatedButton(text: 'Login', onTap: (){})
+                      AppElevatedButton(text: 'Sign In', onTap: (){})
                     ],
                   )
                 )
