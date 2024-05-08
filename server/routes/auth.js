@@ -6,6 +6,7 @@ const authRouter = express.Router();
 
 authRouter.post("/api/signup" , (req ,res)=>{
     const {name , email , password } = req.body;
+    User .findOne({email});
 });
 
 module.exports = authRouter
