@@ -8,11 +8,12 @@ const DB = "mongodb+srv://arbinstha71:A@bro098@cluster0.wh5tylr.mongodb.net/?ret
 app.use(authRouter);
 
 monggose
-.connect(DB).then(()=>{
+    .connect(DB)
+    .then(()=>{
     console.log("Connection Succcessful !")
-}).catch((e)=>{
-    console.log(e);
-});
+    }).catch((e)=>{
+        console.log(e);
+    });
 
 const PORT = 3000;
 const app = express();
