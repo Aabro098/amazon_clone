@@ -6,7 +6,6 @@ import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
 import 'package:amazon_clone/reusables/form_footer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../reusables/form_header.dart';
 
