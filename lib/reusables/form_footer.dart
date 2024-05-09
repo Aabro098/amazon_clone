@@ -1,8 +1,10 @@
 import 'package:amazon_clone/constants/height.dart';
+import 'package:amazon_clone/constants/images.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreenFooter extends StatelessWidget {
-  const LoginScreenFooter(BuildContext context, {super.key});
+class FormFooter extends StatelessWidget {
+  final String text;
+  const FormFooter(BuildContext context, {super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -14,28 +16,22 @@ class LoginScreenFooter extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            icon: const Image(image: AssetImage(tGoogleLogo),width: 30),
+            icon: const Image(image: AssetImage(AppImages.google),width: 30),
             onPressed: (){}, 
-            label : const Text(tGoogle,style: TextStyle(fontWeight: FontWeight.w600),)
+            label : const Text('Sign in with',style: TextStyle(fontWeight: FontWeight.w600),)
           ),
         ),
-        const SizedBox(height: tFormHeight),
+        const SizedBox(height: AppHeight.formheight),
         TextButton(
-          onPressed: (){
-            Navigator.pushReplacement(
-              context,
-                MaterialPageRoute(builder: (context) => const SignUpScreen()
-              ),
-            );
-          },
+          onPressed: (){},
           child: Text.rich(
             TextSpan(
-              text: tNoAccount,
+              text: "Don't Have an account ?",
               style: Theme.of(context).textTheme.titleSmall,
-              children: const  [
+              children: [
                 TextSpan(
-                  text: tSignUp,
-                  style: TextStyle(color: Colors.blue)
+                  text: text,
+                  style: const TextStyle(color: Colors.blue)
                 )
               ]
             )
