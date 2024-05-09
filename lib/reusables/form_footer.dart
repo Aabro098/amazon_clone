@@ -1,10 +1,12 @@
 import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/images.dart';
+import 'package:amazon_clone/features/styles/text_style.dart';
 import 'package:flutter/material.dart';
 
 class FormFooter extends StatelessWidget {
+    final String accountText;
   final String text;
-  const FormFooter(BuildContext context, {super.key, required this.text});
+  const FormFooter(BuildContext context, {super.key, required this.accountText , required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class FormFooter extends StatelessWidget {
           child: OutlinedButton.icon(
             icon: const Image(image: AssetImage(AppImages.google),width: 30),
             onPressed: (){}, 
-            label : const Text('Sign in with',style: TextStyle(fontWeight: FontWeight.w600),)
+            label : Text('Sign in with Google',style: AppTextStyle.normalText.copyWith(color: Colors.black))
           ),
         ),
         const SizedBox(height: AppHeight.formheight),
@@ -26,8 +28,8 @@ class FormFooter extends StatelessWidget {
           onPressed: (){},
           child: Text.rich(
             TextSpan(
-              text: "Don't Have an account ?",
-              style: Theme.of(context).textTheme.titleSmall,
+              text: accountText,
+              style: AppTextStyle.normalText.copyWith(color: Colors.black),
               children: [
                 TextSpan(
                   text: text,
