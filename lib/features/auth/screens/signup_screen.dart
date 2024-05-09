@@ -2,6 +2,7 @@ import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/texts.dart';
 import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
+import 'package:amazon_clone/reusables/form_footer.dart';
 import 'package:flutter/material.dart';
 
 import '../../../reusables/form_header.dart';
@@ -41,7 +42,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _passwordController, hintText: 'Password',),
                       const SizedBox(height: AppHeight.formheight,),
-                      AppElevatedButton(text: 'Sign In', onTap: (){})
+                      AppElevatedButton(text: 'Sign In', onTap: (){}),
+                      const SizedBox(height: AppHeight.formheight,),
+                      FormFooter(context, accountText: "Already Have an account ? ", text: 'Login',)
                     ],
                   )
                 )
