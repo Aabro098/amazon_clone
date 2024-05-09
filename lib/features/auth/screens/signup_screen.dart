@@ -1,5 +1,6 @@
 import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/texts.dart';
+import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
 import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
 import 'package:amazon_clone/reusables/form_footer.dart';
@@ -17,8 +18,10 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _signUpFormKey = GlobalKey<FormState>();
+  final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController= TextEditingController();
   final TextEditingController _passwordController= TextEditingController();
+  
   
   @override
   Widget build(BuildContext context) {
@@ -36,15 +39,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: _signUpFormKey,
                   child: Column(
                     children: [
-                      AppForm(controller: _emailController, hintText: 'Username',),
+                      AppForm(controller: _userNameController, hintText: 'Username',),
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _emailController, hintText: 'Email',),
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _passwordController, hintText: 'Password',),
                       const SizedBox(height: AppHeight.formheight,),
-                      AppElevatedButton(text: 'Sign In', onTap: (){}),
+                      AppElevatedButton(text: 'Sign Up', onTap: (){}),
                       const SizedBox(height: AppHeight.formheight,),
-                      FormFooter(context, accountText: "Already Have an account ? ", text: 'Login',)
+                      FormFooter(context, accountText: "Already Have an account ? ", text: 'Login', 
+                        onTap: () { 
+                          Navigator.pushReplacementNamed(context, AuthScreen.routeName);
+                        },
+                      )
                     ],
                   )
                 )
@@ -60,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _userNameController.dispose();
   }
 }
 

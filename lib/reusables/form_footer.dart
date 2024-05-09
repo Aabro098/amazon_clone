@@ -4,9 +4,14 @@ import 'package:amazon_clone/features/styles/text_style.dart';
 import 'package:flutter/material.dart';
 
 class FormFooter extends StatelessWidget {
-    final String accountText;
+  final String accountText;
   final String text;
-  const FormFooter(BuildContext context, {super.key, required this.accountText , required this.text});
+  final Null Function() onTap;
+  const FormFooter(BuildContext context, {super.key, 
+    required this.accountText , 
+    required this.text, 
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class FormFooter extends StatelessWidget {
         ),
         const SizedBox(height: AppHeight.formheight),
         TextButton(
-          onPressed: (){},
+          onPressed: onTap,
           child: Text.rich(
             TextSpan(
               text: accountText,
