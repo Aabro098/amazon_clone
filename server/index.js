@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth");
 
 const DB = "mongodb+srv://Aabro098:Aabro098@clone.t585tks.mongodb.net/?retryWrites=true&w=majority&appName=Clone"
 
+app.use(express.json());
 app.use(authRouter);
 
 mongoose
