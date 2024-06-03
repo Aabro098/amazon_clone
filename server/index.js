@@ -5,7 +5,7 @@ const app =express();
 
 const authRouter = require("./routes/auth");
 
-const DB = "mongodb+srv://arbinstha71:A@bro098@cluster0.bevr1w2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const DB = "mongodb+srv://Aabro098:Aabro098@clone.t585tks.mongodb.net/?retryWrites=true&w=majority&appName=Clone"
 
 app.use(authRouter);
 
