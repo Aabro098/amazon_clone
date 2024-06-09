@@ -12,16 +12,21 @@ class AuthService{
     try{
       User user = User(
         id: '', 
-        name: '', 
-        password: '', 
-        email: '', 
+        name: name, 
+        password: password, 
+        email: email, 
         address: '', 
         type: '', 
         token: ''
       );
 
-      http.post(Uri.parse('$uri/api/signup'),body: user.toJson());
-
+      http.Response res = await http.post(Uri.parse('$uri/api/signup'),
+        body: user.toJson(),
+        headers: <String , String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        }
+      );
+      print(res.statusCode);
     }catch(e){
 
     }
