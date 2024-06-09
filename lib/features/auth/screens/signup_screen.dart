@@ -1,6 +1,7 @@
 import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/texts.dart';
 import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone/features/auth/services/auth_service.dart';
 import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
 import 'package:amazon_clone/reusables/form_footer.dart';
@@ -21,8 +22,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController= TextEditingController();
   final TextEditingController _passwordController= TextEditingController();
+
+  final AuthService authService  = AuthService();
   
-  
+  void signUpUser(){
+    authService.signUpUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text, 
+      name: _userNameController.text
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +56,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _passwordController, hintText: 'Password',),
                       const SizedBox(height: AppHeight.formheight,),
-                      AppElevatedButton(text: 'Sign Up', onTap: (){}),
+                      AppElevatedButton(text: 'Sign Up', onTap: (){
+                        if (_signUpFormKey.currentState!.validate()){
+                          signUpUser();
+                        }
+                      }),
                       const SizedBox(height: AppHeight.formheight,),
                       FormFooter(context, accountText: "Already Have an account ? ", text: 'Login', 
                         onTap: () { 
