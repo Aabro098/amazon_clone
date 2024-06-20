@@ -30,9 +30,9 @@ authRouter.post("/api/signup" , async (req ,res)=>{
     }
 });
 
-authroute.post("/api/signin",async (req,res)=>{
+authRouter.post("/api/signin",async (req,res)=>{
     try{
-        const {name,password} = req.body;
+        const {email,password} = req.body;
         const user  = await User.findOne({email});
         if (!user){
             return res.status(400)
@@ -43,6 +43,8 @@ authroute.post("/api/signin",async (req,res)=>{
             return res.status(400)
             .json({msg:"Invalid email or password"})
         }
+        const token = jwt.sign({id : user._id},"passwordKey");
+        res.json({token , ...user._doc}); 
     }catch(e){
         return res.status(500)
         .json({error : e.message});
