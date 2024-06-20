@@ -29,5 +29,24 @@ authRouter.post("/api/signup" , async (req ,res)=>{
     }
 });
 
+authroute.post("/api/signin",async (req,res)=>{
+    try{
+        const {name,password} = req.body;
+        const user  = await User.findOne({email});
+        if (!user){
+            return res.status(400)
+            .json({msg:"User with this email doesn't exist"});
+        }
+        const isMatch = bcryptjs.compare(password , user.password);
+        if (!isMatch){
+            return res.status(400)
+            .json({msg:"Invalid email or password"})
+        }
+    }catch(e){
+        return res.status(500)
+        .json({error : e.message});
+    }
+});
+
 module.exports = authRouter
 
