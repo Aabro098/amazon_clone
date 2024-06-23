@@ -1,4 +1,4 @@
-# amazon_clone
+# Authentication using flutter and node js using jwt
 
 A new Flutter project.
 
