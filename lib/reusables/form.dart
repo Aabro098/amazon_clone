@@ -30,7 +30,10 @@ class AppForm extends StatelessWidget {
         ),
       ),
       validator: (value){
-        return 'Error missing value';
+        if(value == null || value.isEmpty){
+          return 'Enter your $hintText';
+        }
+        return null;
       },
     );
   }
