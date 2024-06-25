@@ -1,8 +1,10 @@
 import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/texts.dart';
+import 'package:amazon_clone/features/auth/screens/signup_screen.dart';
 import 'package:amazon_clone/features/styles/text_style.dart';
 import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
+import 'package:amazon_clone/reusables/form_footer.dart';
 import 'package:flutter/material.dart';
 
 import '../../../reusables/form_header.dart';
@@ -40,11 +42,20 @@ class _AuthScreenState extends State<AuthScreen> {
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _passwordController, hintText: 'Password',),
                       const SizedBox(height: AppHeight.formheight,),
-                      TextButton(onPressed: (){}, child: Text(
-                        'Forgot Password ?' , style: AppTextStyle.normalText ,
-                      )),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(onPressed: (){}, child: Text(
+                          'Forgot Password ?' , style: AppTextStyle.normalText.copyWith(color: Colors.blue) ,
+                        )),
+                      ),
                       const SizedBox(height: AppHeight.formheight,),
-                      AppElevatedButton(text: 'Login', onTap: (){})
+                      AppElevatedButton(text: 'Login', onTap: (){}),
+                      const SizedBox(height: AppHeight.formheight,),
+                      FormFooter(context, accountText: "Don't Have an account ? ", text: 'Sign Up',
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, SignUpScreen.routeName);
+                        },
+                      )
                     ],
                   )
                 )

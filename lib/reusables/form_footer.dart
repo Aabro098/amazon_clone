@@ -1,8 +1,17 @@
 import 'package:amazon_clone/constants/height.dart';
+import 'package:amazon_clone/constants/images.dart';
+import 'package:amazon_clone/features/styles/text_style.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreenFooter extends StatelessWidget {
-  const LoginScreenFooter(BuildContext context, {super.key});
+class FormFooter extends StatelessWidget {
+  final String accountText;
+  final String text;
+  final Null Function() onTap;
+  const FormFooter(BuildContext context, {super.key, 
+    required this.accountText , 
+    required this.text, 
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,28 +23,22 @@ class LoginScreenFooter extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            icon: const Image(image: AssetImage(tGoogleLogo),width: 30),
+            icon: const Image(image: AssetImage(AppImages.google),width: 30),
             onPressed: (){}, 
-            label : const Text(tGoogle,style: TextStyle(fontWeight: FontWeight.w600),)
+            label : Text('Sign in with Google',style: AppTextStyle.normalText.copyWith(color: Colors.black))
           ),
         ),
-        const SizedBox(height: tFormHeight),
+        const SizedBox(height: AppHeight.formheight),
         TextButton(
-          onPressed: (){
-            Navigator.pushReplacement(
-              context,
-                MaterialPageRoute(builder: (context) => const SignUpScreen()
-              ),
-            );
-          },
+          onPressed: onTap,
           child: Text.rich(
             TextSpan(
-              text: tNoAccount,
-              style: Theme.of(context).textTheme.titleSmall,
-              children: const  [
+              text: accountText,
+              style: AppTextStyle.normalText.copyWith(color: Colors.black),
+              children: [
                 TextSpan(
-                  text: tSignUp,
-                  style: TextStyle(color: Colors.blue)
+                  text: text,
+                  style: const TextStyle(color: Colors.blue)
                 )
               ]
             )
