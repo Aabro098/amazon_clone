@@ -1,5 +1,6 @@
 import 'package:amazon_clone/constants/height.dart';
 import 'package:amazon_clone/constants/texts.dart';
+import 'package:amazon_clone/features/styles/text_style.dart';
 import 'package:amazon_clone/reusables/elevated_button.dart';
 import 'package:amazon_clone/reusables/form.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _signUpFormKey = GlobalKey<FormState>();
+  final _signInFormKey = GlobalKey<FormState>();
   final TextEditingController _emailController= TextEditingController();
   final TextEditingController _passwordController= TextEditingController();
   
@@ -32,12 +33,16 @@ class _AuthScreenState extends State<AuthScreen> {
                 const AppFormHeader(text: AppText.loginMessage,),
                 Form(
                   //Login Form
-                  key: _signUpFormKey,
+                  key: _signInFormKey,
                   child: Column(
                     children: [
                       AppForm(controller: _emailController, hintText: 'Email',),
                       const SizedBox(height: AppHeight.formheight,),
                       AppForm(controller: _passwordController, hintText: 'Password',),
+                      const SizedBox(height: AppHeight.formheight,),
+                      TextButton(onPressed: (){}, child: Text(
+                        'Forgot Password ?' , style: AppTextStyle.normalText ,
+                      )),
                       const SizedBox(height: AppHeight.formheight,),
                       AppElevatedButton(text: 'Login', onTap: (){})
                     ],
