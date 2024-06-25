@@ -19,11 +19,11 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _signUpFormKey = GlobalKey<FormState>();
+  final AuthService authService  = AuthService();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController= TextEditingController();
   final TextEditingController _passwordController= TextEditingController();
 
-  final AuthService authService  = AuthService();
   
   void signUpUser(){
     authService.signUpUser(
